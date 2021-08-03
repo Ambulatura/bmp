@@ -29,8 +29,8 @@ int main()
 		}
 
 		int sliced_count = BMP_BatchSliceBmpAndWriteToSeperateFiles("walls",
-		                                                            walls_bmp.pixels, 
-																	walls_bmp.width, walls_bmp.height, 
+		                                                            walls_bmp.pixels,
+																	walls_bmp.width, walls_bmp.height,
 																	32, 32);
 		// int sliced_count = BMP_BatchSliceBmpAndWriteToSeperateFiles("walls", &walls_bmp, 32, 32);
 	}
@@ -39,16 +39,16 @@ int main()
 }
 ```
 
-Walls
-![](data/walls.bmp)
-First slice
-![](data/walls000.bmp)
-Second slice
-![](data/walls001.bmp)
-Third slice
-![](data/walls002.bmp)
-.
-.
-.
-Last slice
-![](data/walls093.bmp)
+Walls<br>
+![](data/walls.bmp)<br>
+First slice<br>
+![](data/walls000.bmp)<br>
+Second slice<br>
+![](data/walls001.bmp)<br>
+Third slice<br>
+![](data/walls002.bmp)<br>
+.<br>
+.<br>
+.<br>
+Last slice<br>
+![](data/walls093.bmp)<br>
