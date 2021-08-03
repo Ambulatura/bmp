@@ -38,21 +38,15 @@ int main()
 }
 ```
 
-
-| ![](data/walls000.bmp) | ![](data/walls001.bmp) | ![](data/walls002.bmp) |
-| .................... | .................... | ..................... |
-| ![](data/walls091.bmp) | ![](data/walls092.bmp) | ![](data/walls093.bmp) |
-
-# Walls <br>
+# Walls
 ![](data/walls.bmp)<br>
-# First slice <br>
-![](data/walls000.bmp)<br>
-# Second slice<br>
-![](data/walls001.bmp)<br>
-# Third slice<br>
-![](data/walls002.bmp)<br>
+# Slices
+![First slice](data/walls000.bmp)
+![Second slice](data/walls001.bmp)
+![Thirs slice](data/walls002.bmp)<br>
 .<br>
 .<br>
 .<br>
-Last slice<br>
-![](data/walls093.bmp)<br>
+![(n - 2)th slice](data/walls091.bmp)
+![(n - 1)th slice](data/walls092.bmp)
+![nth slice](data/walls093.bmp)<br>
