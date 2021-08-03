@@ -57,3 +57,7 @@ int main()
 ![](data/walls070.bmp)
 ![](data/walls071.bmp)
 ![](data/walls072.bmp)<br>
+
+## Pixel Art Sources
+https://pixelfrog-assets.itch.io/kings-and-pigs
+https://rvros.itch.io/animated-pixel-hero

@@ -1,5 +1,6 @@
 main.cpp
 build
+build.bat
 .vs
 *.bin
 *.pdb
