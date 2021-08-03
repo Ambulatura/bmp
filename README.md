@@ -44,9 +44,7 @@ int main()
 ![First slice](data/walls000.bmp)
 ![Second slice](data/walls001.bmp)
 ![Thirs slice](data/walls002.bmp)<br>
-.<br>
-.<br>
-.<br>
+.................................
 ![(n - 2)th slice](data/walls091.bmp)
 ![(n - 1)th slice](data/walls092.bmp)
 ![nth slice](data/walls093.bmp)<br>
