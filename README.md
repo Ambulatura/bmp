@@ -36,9 +36,9 @@ int main()
 }
 ```
 
-# Walls
+# Example Bmp Image
 ![](data/walls.bmp)<br>
-# Example Slices
+# Example Bmp Slices
 ![](data/walls000.bmp)
 ![](data/walls001.bmp)
 ![](data/walls002.bmp)<br>
