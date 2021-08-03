@@ -42,9 +42,9 @@ int main()
 ![](data/walls000.bmp)
 ![](data/walls001.bmp)
 ![](data/walls002.bmp)<br>
-![](data/walls003.bmp)
-![](data/walls004.bmp)
-![](data/walls005.bmp)<br>
-![](data/walls006.bmp)
-![](data/walls007.bmp)
-![](data/walls008.bmp)<br>
+![](data/walls011.bmp)
+![](data/walls012.bmp)
+![](data/walls013.bmp)<br>
+![](data/walls023.bmp)
+![](data/walls024.bmp)
+![](data/walls025.bmp)<br>
