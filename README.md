@@ -12,9 +12,11 @@ int main()
 	if (hero_bmp.is_valid) {
 		BMP_CreateBmp("new_hero.bmp", &hero_bmp);
 
-		BMP_Bmp sliced_hero_bmp = BMP_SliceBmp(hero_bmp.pixels, hero_bmp.width, hero_bmp.height, 0, 0, hero_bmp.width, hero_bmp.height);
+		BMP_Bmp sliced_hero_bmp = BMP_SliceBmp(hero_bmp.pixels, hero_bmp.width, hero_bmp.height,
+		                                       0, 0, hero_bmp.width, hero_bmp.height);
 		if (sliced_hero_bmp.is_valid) {
-			BMP_CreateBmp("sliced_hero.bmp", sliced_hero_bmp.pixels, sliced_hero_bmp.width, sliced_hero_bmp.height);
+			BMP_CreateBmp("sliced_hero.bmp", sliced_hero_bmp.pixels,
+			              sliced_hero_bmp.width, sliced_hero_bmp.height);
 		}
 	}
 
@@ -27,8 +29,8 @@ int main()
 		}
 
 		int sliced_count = BMP_BatchSliceBmpAndWriteToSeperateFiles("walls",
-																	walls_bmp.pixels,
-																	walls_bmp.width, walls_bmp.height,
+		                                                            walls_bmp.pixels, 
+																	walls_bmp.width, walls_bmp.height, 
 																	32, 32);
 		// int sliced_count = BMP_BatchSliceBmpAndWriteToSeperateFiles("walls", &walls_bmp, 32, 32);
 	}
@@ -37,3 +39,16 @@ int main()
 }
 ```
 
+Walls
+![](data/walls.bmp)
+First slice
+![](data/walls000.bmp)
+Second slice
+![](data/walls001.bmp)
+Third slice
+![](data/walls002.bmp)
+.
+.
+.
+Last slice
+![](data/walls093.bmp)
