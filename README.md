@@ -8,23 +8,11 @@ Load, create and slice bmp files.
 
 int main()
 {
-	BMP_Bmp hero_bmp = BMP_LoadBmp("hero.bmp");
-	if (hero_bmp.is_valid) {
-		BMP_CreateBmp("new_hero.bmp", &hero_bmp);
-
-		BMP_Bmp sliced_hero_bmp = BMP_SliceBmp(hero_bmp.pixels, hero_bmp.width, hero_bmp.height,
-		                                       0, 0, hero_bmp.width, hero_bmp.height);
-		if (sliced_hero_bmp.is_valid) {
-			BMP_CreateBmp("sliced_hero.bmp", sliced_hero_bmp.pixels,
-			              sliced_hero_bmp.width, sliced_hero_bmp.height);
-		}
-	}
-
 	BMP_Bmp walls_bmp = BMP_LoadBmp("walls.bmp");
 
-	if (walls_bmp.is_valid) {
+	if (walls_bmp.pixels) {
 		BMP_Bmp sliced_wall_bmp = BMP_SliceBmp(&walls_bmp, 64, 32, 32, 32);
-		if (sliced_wall_bmp.is_valid) {
+		if (sliced_wall_bmp.pixels) {
 			BMP_CreateBmp("sliced_wall.bmp", &sliced_wall_bmp);
 		}
 
