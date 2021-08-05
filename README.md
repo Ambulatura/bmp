@@ -48,4 +48,3 @@ int main()
 
 ### Pixel Art Sources <br>
 https://pixelfrog-assets.itch.io/kings-and-pigs<br>
-https://rvros.itch.io/animated-pixel-hero
