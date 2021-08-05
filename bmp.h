@@ -1,3 +1,5 @@
+#ifndef BMP_BMP_HEADER
+
 // NOTE: Requires
 // #include <stdio.h>
 // #include <stdlib.h>
@@ -14,7 +16,6 @@
 
 struct BMP_Bmp
 {
-	int is_valid;
 	void* pixels;
 	int width;
 	int height;
@@ -66,6 +67,12 @@ PACK_1(
 	   );
 
 
+/* 
+
+   NOTE: Function declarations.
+   
+*/
+
 // NOTE: Loads .bmp file from file and returns it as BMP_Bmp.
 static BMP_Bmp BMP_LoadBmp(char* file_name);
 
@@ -78,11 +85,6 @@ static BMP_Bmp BMP_SliceBmp(void* source_bmp_pixels, int source_width, int sourc
 							int x_offset, int y_offset, int slice_width, int slice_height);
 static BMP_Bmp BMP_SliceBmp(BMP_Bmp* source_bmp, int x_offset, int y_offset, int slice_width, int slice_height);
 
-// NOTE: Same with BMP_SliceBmp but returns empty BMP_Bmp if slice is empty.
-static BMP_Bmp BMP_SliceBmpSkipEmpty(void* source_bmp_pixels, int source_width, int source_height,
-									 int x_offset, int y_offset, int slice_width, int slice_height);
-static BMP_Bmp BMP_SliceBmpSkipEmpty(void* source_bmp_pixels, int source_width, int source_height,
-									 int x_offset, int y_offset, int slice_width, int slice_height);
 // NOTE: Checks if slice is empty.
 static int BMP_IsBmpSliceEmpty(void* source_bmp_pixels, int source_width, int source_height,
 							   int x_offset, int y_offset, int slice_width, int slice_height);
@@ -100,10 +102,18 @@ static int BMP_BatchSliceBmpAndWriteToSeperateFiles(char* file_base_name,
 													BMP_Bmp* source_bmp,
 													int slice_width, int slice_height, int max_digit_count=3);
 
-// NOTE: Utility functions for file naming.
+// NOTE: Utility function for BMP_LoadBmp().
 static int BMP_FindLeastSignificantSetBit(int value);
+
+// NOTE: Utility functions to name files in BMP_BatchSliceBmpAndWriteToSeperateFiles()
 static int BMP_GetDigitCount(int number);
 static int BMP_GetDigitN(int number, int digit_n);
+
+/* 
+
+   NOTE: Function Implementations.
+   
+*/
 
 static BMP_Bmp BMP_LoadBmp(char* file_name)
 {
@@ -147,8 +157,6 @@ static BMP_Bmp BMP_LoadBmp(char* file_name)
 							 (b << 0));
 			}
 		}
-
-		bmp.is_valid = true;
 
 		fclose(bmp_file);
 	}
@@ -201,8 +209,8 @@ static int BMP_CreateBmp(char* file_name, BMP_Bmp* source_bmp)
 	return result;
 }
 
-static int BMP_IsBitmapSliceEmpty(void* source_bmp_pixels, int source_width, int source_height,
-								  int x_offset, int y_offset, int slice_width, int slice_height)
+static int BMP_IsBmpSliceEmpty(void* source_bmp_pixels, int source_width, int source_height,
+							   int x_offset, int y_offset, int slice_width, int slice_height)
 {
 	int is_empty = true;
 
@@ -227,10 +235,10 @@ static int BMP_IsBitmapSliceEmpty(void* source_bmp_pixels, int source_width, int
 	return is_empty;
 }
 
-static int BMP_IsBitmapSliceEmpty(BMP_Bmp* source_bmp, int x_offset, int y_offset, int slice_width, int slice_height)
+static int BMP_IsBmpSliceEmpty(BMP_Bmp* source_bmp, int x_offset, int y_offset, int slice_width, int slice_height)
 {
-	int is_empty = BMP_IsBitmapSliceEmpty(source_bmp->pixels, source_bmp->width, source_bmp->height,
-										  x_offset, y_offset, slice_width, slice_height);
+	int is_empty = BMP_IsBmpSliceEmpty(source_bmp->pixels, source_bmp->width, source_bmp->height,
+									   x_offset, y_offset, slice_width, slice_height);
 
 	return is_empty;
 }
@@ -238,12 +246,11 @@ static int BMP_IsBitmapSliceEmpty(BMP_Bmp* source_bmp, int x_offset, int y_offse
 static BMP_Bmp BMP_SliceBmp(void* source_bmp_pixels, int source_width, int source_height,
 							int x_offset, int y_offset, int slice_width, int slice_height)
 {
-	BMP_Bmp result;
+	BMP_Bmp result = {};
 
 	result.pixels = malloc(slice_width * slice_height * BMP_BYTES_PER_PIXEL);
 	result.width = slice_width;
 	result.height = slice_height;
-	result.is_valid = true;
 
 	y_offset = source_height - y_offset - slice_height;
 
@@ -273,35 +280,6 @@ static BMP_Bmp BMP_SliceBmp(BMP_Bmp* source_bmp, int x_offset, int y_offset, int
 	return sliced_bmp;
 }
 
-static BMP_Bmp BMP_SliceBmpSkipEmpty(void* source_bmp_pixels, int source_width, int source_height,
-									 int x_offset, int y_offset, int slice_width, int slice_height)
-{
-	BMP_Bmp sliced_bmp = {};
-	if (!BMP_IsBitmapSliceEmpty(source_bmp_pixels,
-								source_width, source_height,
-								x_offset, y_offset,
-								slice_width, slice_height)) {
-		sliced_bmp = BMP_SliceBmp(source_bmp_pixels, source_width, source_height,
-								  x_offset, y_offset, slice_width, slice_height);
-	}
-
-	return sliced_bmp;
-}
-
-static BMP_Bmp BMP_SliceBmpSkipEmpty(BMP_Bmp* source_bmp, int x_offset, int y_offset, int slice_width, int slice_height)
-{
-	BMP_Bmp sliced_bmp = {};
-	if (!BMP_IsBitmapSliceEmpty(source_bmp->pixels,
-								source_bmp->width, source_bmp->height,
-								x_offset, y_offset,
-								slice_width, slice_height)) {
-		sliced_bmp = BMP_SliceBmp(source_bmp->pixels, source_bmp->width, source_bmp->height,
-								  x_offset, y_offset, slice_width, slice_height);
-	}
-
-	return sliced_bmp;
-}
-
 static int BMP_BatchSliceBmpAndWriteToSeperateFiles(char* file_base_name,
 													void* source_bmp_pixels, int source_width, int source_height,
 													int slice_width, int slice_height, int max_digit_count)
@@ -310,9 +288,11 @@ static int BMP_BatchSliceBmpAndWriteToSeperateFiles(char* file_base_name,
 	for (int y_source = 0; y_source < source_height; y_source += slice_height) {
 		for (int x_source = 0; x_source < source_width; x_source += slice_width) {
 
-			BMP_Bmp sliced_bmp = BMP_SliceBmpSkipEmpty(source_bmp_pixels, source_width, source_height,
-													   x_source, y_source, slice_width, slice_height);
-			if (sliced_bmp.is_valid) {
+			if (!BMP_IsBmpSliceEmpty(source_bmp_pixels, source_width, source_height,
+									 x_source, y_source, slice_width, slice_height)) {
+				
+				BMP_Bmp sliced_bmp = BMP_SliceBmp(source_bmp_pixels, source_width, source_height,
+												  x_source, y_source, slice_width, slice_height);
 
 				int slice_count_digit_count = BMP_GetDigitCount(slice_count);
 				int rest_digit_count = max_digit_count - slice_count_digit_count;
@@ -390,3 +370,6 @@ static int BMP_GetDigitN(int number, int digit_n)
 
 	return result;
 }
+
+#define BMP_BMP_HEADER
+#endif
