@@ -46,5 +46,5 @@ int main()
 ![](data/walls071.bmp)
 ![](data/walls072.bmp)<br>
 
-### Pixel Art Sources <br>
+### Pixel Art Source <br>
 https://pixelfrog-assets.itch.io/kings-and-pigs<br>
